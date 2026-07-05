@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 MAD Blender Summer Camp</title>
+  <style>
+    /* ── Fonts ─────────────────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    /* ── Design tokens ─────────────────────────────────────────── */
+    :root {
+      --bg:        #111316;
+      --surface:   #181b1f;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #d4d8e0;
+      --muted:     #636a78;
+
+      /* Blender axis gizmo colors */
+      --x: #e8403a;   /* red   — 2D / Drawing */
+      --y: #5cba47;   /* green — 3D Modeling  */
+      --z: #3a86e8;   /* blue  — Animation    */
+
+      --nav-h: 52px;
+      --radius: 6px;
+      --mono: 'JetBrains Mono', 'Courier New', monospace;
+      --display: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--display);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      /* viewport floor grid */
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      background-position: center top;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Sticky nav ────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(17,19,22,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 max(1.5rem, env(safe-area-inset-right));
+      gap: 1.5rem;
+      overflow-x: auto;
+    }
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    nav a:hover, nav a:focus-visible { color: var(--text); outline: none; }
+    nav a:focus-visible { border-bottom-color: var(--z); }
+    nav .nav-brand {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-right: auto;
+      white-space: nowrap;
+    }
+
+    /* ── Layout wrapper ────────────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* ── Hero / Header ─────────────────────────────────────────── */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      gap: 1.25rem;
+    }
+    .hud-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    h1 span.accent-x { color: var(--x); }
+    h1 span.accent-y { color: var(--y); }
+    h1 span.accent-z { color: var(--z); }
+
+    /* ── Wireframe cube ────────────────────────────────────────── */
+    .cube-wrap {
+      width: 64px;
+      height: 64px;
+      perspective: 200px;
+    }
+    .cube {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: spin-cube 8s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cube { animation: none; transform: rotateX(-20deg) rotateY(30deg); }
+    }
+    @keyframes spin-cube {
+      0%   { transform: rotateX(-20deg) rotateY(0deg); }
+      100% { transform: rotateX(-20deg) rotateY(360deg); }
+    }
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid;
+      background: transparent;
+    }
+    .face-front  { transform: translateZ(32px); border-color: rgba(58,134,232,0.7); }
+    .face-back   { transform: translateZ(-32px) rotateY(180deg); border-color: rgba(58,134,232,0.4); }
+    .face-left   { transform: translateX(-32px) rotateY(-90deg); border-color: rgba(232,64,58,0.7); }
+    .face-right  { transform: translateX(32px) rotateY(90deg);  border-color: rgba(232,64,58,0.4); }
+    .face-top    { transform: translateY(-32px) rotateX(90deg); border-color: rgba(92,186,71,0.7); }
+    .face-bottom { transform: translateY(32px) rotateX(-90deg); border-color: rgba(92,186,71,0.4); }
+
+    /* ── Legend / axis key ─────────────────────────────────────── */
+    .legend {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-x { background: var(--x); }
+    .dot-y { background: var(--y); }
+    .dot-z { background: var(--z); }
+    .dot-w { background: var(--muted); }
+
+    /* ── Sections ──────────────────────────────────────────────── */
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 1rem);
+      margin-top: 3.5rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    .section-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .section-header .hud-label { margin-left: auto; }
+
+    /* ── Important links ───────────────────────────────────────── */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+    .link-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding: 1rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .link-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+    .link-card:focus-visible { outline: 2px solid var(--z); outline-offset: 2px; }
+    .link-card .link-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    .link-card .link-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .link-card .link-desc {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Day counter ───────────────────────────────────────────── */
+    .days-list {
+      counter-reset: day-counter;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    /* ── Day block ─────────────────────────────────────────────── */
+    .day-block {
+      counter-increment: day-counter;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .day-block::before {
+      content: counter(day-counter, decimal-leading-zero);
+      position: absolute;
+      right: 1.1rem;
+      top: 1rem;
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+    /* Left accent stripe — changes per category via day-level class */
+    .day-block::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+    }
+    /* default stripe (neutral) */
+    .day-block::after { background: var(--border); }
+
+    .day-meta {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .day-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Session pills ─────────────────────────────────────────── */
+    .sessions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .session {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 3px;
+      border: 1px solid;
+    }
+    /* Category variants */
+    .session.drawing {
+      color: var(--x);
+      border-color: rgba(232,64,58,0.3);
+      background: rgba(232,64,58,0.06);
+    }
+    .session.modeling {
+      color: var(--y);
+      border-color: rgba(92,186,71,0.3);
+      background: rgba(92,186,71,0.06);
+    }
+    .session.animation {
+      color: var(--z);
+      border-color: rgba(58,134,232,0.3);
+      background: rgba(58,134,232,0.06);
+    }
+    .session.other {
+      color: var(--muted);
+      border-color: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* ── Week 2 placeholder ────────────────────────────────────── */
+    .placeholder-card {
+      border: 1px dashed rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+      color: var(--muted);
+    }
+    .placeholder-card p {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+      margin-top: 5rem;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav { gap: 1rem; }
+      .links-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-brand">MAD Blender Camp</span>
+  <a href="#links">Links</a>
+  <a href="#week1">Week 1</a>
+  <a href="#week2">Week 2</a>
+</nav>
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<header>
+  <div class="cube-wrap" aria-hidden="true">
+    <div class="cube">
+      <div class="face face-front"></div>
+      <div class="face face-back"></div>
+      <div class="face face-left"></div>
+      <div class="face face-right"></div>
+      <div class="face face-top"></div>
+      <div class="face face-bottom"></div>
+    </div>
+  </div>
+
+  <p class="hud-label">MADarts · Summer 2026 · Blender &amp; 3D Animation</p>
+
+  <h1>
+    2026 MAD<br>
+    <span class="accent-x">Blend</span><span class="accent-y">er</span>
+    <span class="accent-z">Camp</span>
+  </h1>
+
+  <p class="hud-label" style="color:var(--text); font-size:0.8rem; max-width:480px; line-height:1.6;">
+    Official schedule and resources for the 2026 MAD Blender Summer Camp.
+    Five days of drawing, 3D modeling, and animation — everything is just a box.
+  </p>
+
+  <div class="legend" role="list" aria-label="Category color key">
+    <span class="legend-item" role="listitem"><span class="dot dot-x"></span>X · Drawing / 2D</span>
+    <span class="legend-item" role="listitem"><span class="dot dot-y"></span>Y · Modeling / 3D</span>
+    <span class="legend-item" role="listitem"><span class="dot dot-z"></span>Z · Animation</span>
+    <span class="legend-item" role="listitem"><span class="dot dot-w"></span>— General / Other</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── Important Links ──────────────────────────────────────── -->
+  <section id="links">
+    <div class="section-header">
+      <h2>Important Links</h2>
+      <span class="hud-label">// resources</span>
+    </div>
+
+    <div class="links-grid">
+      <a class="link-card" href="#" aria-label="Discord server invite (coming soon)">
+        <span class="link-icon">💬</span>
+        <span class="link-title">Discord</span>
+        <span class="link-desc">Community Server</span>
+      </a>
+      <a class="link-card" href="#" aria-label="Notion hub (coming soon)">
+        <span class="link-icon">📋</span>
+        <span class="link-title">Notion Hub</span>
+        <span class="link-desc">Notes &amp; Resources</span>
+      </a>
+      <a class="link-card" href="#" aria-label="Submission page (coming soon)">
+        <span class="link-icon">📤</span>
+        <span class="link-title">Submissions</span>
+        <span class="link-desc">Upload Your Work</span>
+      </a>
+      <a class="link-card" href="#" aria-label="Materials and downloads (coming soon)">
+        <span class="link-icon">⬇️</span>
+        <span class="link-title">Downloads</span>
+        <span class="link-desc">Files &amp; Materials</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Week 1 ─────────────────────────────────────────────────── -->
+  <section id="week1">
+    <div class="section-header">
+      <h2>Week 1</h2>
+      <span class="hud-label">// Jul 6 – Jul 10</span>
+    </div>
+
+    <ol class="days-list">
+
+      <!-- Day 1 -->
+      <li class="day-block">
+        <p class="day-meta">Monday · July 6, 2026</p>
+        <h3 class="day-title">Introduction &amp; First Moves</h3>
+        <div class="sessions" role="list">
+          <span class="session other" role="listitem">Introduction Exercises</span>
+          <span class="session other" role="listitem">How to Think in 3D</span>
+          <span class="session other" role="listitem">MAD Arts Tour</span>
+          <span class="session animation" role="listitem">Make It Move: Animating in Blender</span>
+        </div>
+      </li>
+
+      <!-- Day 2 -->
+      <li class="day-block">
+        <p class="day-meta">Tuesday · July 7, 2026</p>
+        <h3 class="day-title">Motion &amp; The Cube</h3>
+        <div class="sessions" role="list">
+          <span class="session drawing" role="listitem">Drawing Exercises</span>
+          <span class="session animation" role="listitem">Motion &amp; Emotion: History of Animation</span>
+          <span class="session modeling" role="listitem">Becoming the Cube: Intro to Blender</span>
+        </div>
+      </li>
+
+      <!-- Day 3 -->
+      <li class="day-block">
+        <p class="day-meta">Wednesday · July 8, 2026</p>
+        <h3 class="day-title">Story &amp; Character</h3>
+        <div class="sessions" role="list">
+          <span class="session drawing" role="listitem">Drawing Exercises</span>
+          <span class="session other" role="listitem">Storyboarding for Storytelling</span>
+          <span class="session animation" role="listitem">Animation Exercises</span>
+          <span class="session modeling" role="listitem">Shape People: 3D Character Design</span>
+        </div>
+      </li>
+
+      <!-- Day 4 -->
+      <li class="day-block">
+        <p class="day-meta">Thursday · July 9, 2026</p>
+        <h3 class="day-title">Modeling &amp; Loops</h3>
+        <div class="sessions" role="list">
+          <span class="session drawing" role="listitem">Drawing Exercises</span>
+          <span class="session modeling" role="listitem">Modeling with Primitive Objects</span>
+          <span class="session animation" role="listitem">Loop Lab: GIFs in Blender</span>
+        </div>
+      </li>
+
+      <!-- Day 5 -->
+      <li class="day-block">
+        <p class="day-meta">Friday · July 10, 2026</p>
+        <h3 class="day-title">World Building &amp; Screening</h3>
+        <div class="sessions" role="list">
+          <span class="session drawing" role="listitem">Drawing Exercises</span>
+          <span class="session modeling" role="listitem">Photogrammetry &amp; Alternative Modeling</span>
+          <span class="session modeling" role="listitem">3D Sculpting in Blender</span>
+          <span class="session animation" role="listitem">World Building: Ambient Animation</span>
+          <span class="session other" role="listitem">Screening: TBD</span>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ── Week 2 placeholder ────────────────────────────────────── -->
+  <section id="week2">
+    <div class="section-header">
+      <h2>Week 2</h2>
+      <span class="hud-label">// coming soon</span>
+    </div>
+    <div class="placeholder-card">
+      <p>// SCHEDULE COMING SOON</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  MADarts &nbsp;·&nbsp; 2026 Blender Summer Camp &nbsp;·&nbsp; Everything is just a box.
+</footer>
+
+</body>
+</html>
