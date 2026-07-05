@@ -91,12 +91,10 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 0 1.5rem 6rem;
-      position: relative;
     }
 
     /* ── Hero / Header ─────────────────────────────────────────── */
     header {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -361,38 +359,6 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── Scene decoration ──────────────────────────────────────── */
-    .scene-deco {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .deco {
-      position: absolute;
-      opacity: 0.32;
-    }
-    .deco-sphere   { left: -18px; top: 14vh; animation: deco-spinZ 24s linear infinite; }
-    .deco-cone     { left: -10px; top: 56vh; animation: deco-float 11s ease-in-out infinite; }
-    .deco-cylinder { right: -14px; top: 22vh; animation: deco-spinZ 19s linear infinite reverse; }
-    .deco-torus    { right: -16px; top: 62vh; animation: deco-float 9s ease-in-out infinite reverse; }
-
-    @keyframes deco-spinZ {
-      from { transform: rotateZ(0deg); }
-      to   { transform: rotateZ(360deg); }
-    }
-    @keyframes deco-float {
-      0%, 100% { transform: translateY(0px); }
-      50%      { transform: translateY(-18px); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .deco { animation: none; }
-    }
-    @media (max-width: 1000px) {
-      .scene-deco { display: none; }
-    }
-
     /* ── Responsive ────────────────────────────────────────────── */
     @media (max-width: 600px) {
       nav { gap: 1rem; }
@@ -401,62 +367,6 @@
   </style>
 </head>
 <body>
-
-<!-- ── Decorative wireframe primitives (fixed, behind content) ── -->
-<div class="scene-deco" aria-hidden="true">
-
-  <!-- Left · Sphere -->
-  <div class="deco deco-sphere">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-46 -46 92 92" width="92" height="92">
-      <g stroke="rgba(58,134,232,0.72)" stroke-width="2" fill="none">
-        <circle r="42"/>
-        <ellipse rx="42" ry="15"/>
-        <ellipse rx="42" ry="15" transform="rotate(60)"/>
-        <ellipse rx="42" ry="15" transform="rotate(-60)"/>
-        <ellipse rx="15" ry="42"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Left · Cone -->
-  <div class="deco deco-cone">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-44 -52 88 100" width="88" height="100">
-      <g stroke="rgba(232,64,58,0.72)" stroke-width="2" fill="none">
-        <ellipse cx="0" cy="36" rx="40" ry="13"/>
-        <line x1="-40" y1="36" x2="0" y2="-44"/>
-        <line x1="40"  y1="36" x2="0" y2="-44"/>
-        <ellipse cx="0" cy="10"  rx="24" ry="7.5"/>
-        <ellipse cx="0" cy="-14" rx="10" ry="3.2"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Right · Cylinder -->
-  <div class="deco deco-cylinder">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -54 80 108" width="80" height="108">
-      <g stroke="rgba(92,186,71,0.72)" stroke-width="2" fill="none">
-        <ellipse cy="-40" rx="34" ry="11"/>
-        <ellipse cy="40"  rx="34" ry="11"/>
-        <line x1="-34" y1="-40" x2="-34" y2="40"/>
-        <line x1="34"  y1="-40" x2="34"  y2="40"/>
-        <ellipse cy="0" rx="34" ry="11"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Right · Torus -->
-  <div class="deco deco-torus">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -34 104 68" width="104" height="68">
-      <g stroke="rgba(232,64,58,0.72)" stroke-width="2" fill="none">
-        <ellipse rx="47" ry="17"/>
-        <ellipse rx="20" ry="7"/>
-        <ellipse cy="-17" rx="47" ry="9"/>
-        <ellipse cy="17"  rx="47" ry="9"/>
-      </g>
-    </svg>
-  </div>
-
-</div>
 
 <!-- ── Navigation ──────────────────────────────────────────────── -->
 <nav>
