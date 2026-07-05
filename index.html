@@ -99,7 +99,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 4rem 1rem 3rem;
+      padding: 2rem 1rem 3rem;
       gap: 1.25rem;
     }
     .hud-label {
@@ -125,7 +125,7 @@
       width: 88px;
       height: 88px;
       perspective: 280px;
-      margin: 1rem 0;
+      margin: 0 0 2rem 0;
     }
     .cube {
       width: 100%;
@@ -180,7 +180,7 @@
     .dot-x { background: var(--x); }
     .dot-y { background: var(--y); }
     .dot-z { background: var(--z); }
-    .dot-w { background: var(--muted); }
+    .dot-w { background: var(--text); }
 
     /* ── Sections ──────────────────────────────────────────────── */
     section {
@@ -328,9 +328,9 @@
       background: rgba(58,134,232,0.06);
     }
     .session.other {
-      color: var(--muted);
-      border-color: rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
     }
 
     /* ── Week 2 placeholder ────────────────────────────────────── */
@@ -445,45 +445,46 @@
       <!-- Day 1 -->
       <li class="day-block">
         <p class="day-meta">Monday · July 6, 2026</p>
-        <h3 class="day-title">Introduction &amp; First Moves</h3>
+        <h3 class="day-title">Into the Box</h3>
         <div class="sessions" role="list">
-          <span class="session other" role="listitem">Introduction Exercises</span>
-          <span class="session other" role="listitem">How to Think in 3D</span>
+          <span class="session drawing" role="listitem">Introduction Exercises</span>
+          <span class="session modeling" role="listitem">How to Think in 3D</span>
           <span class="session other" role="listitem">MAD Arts Tour</span>
-          <span class="session animation" role="listitem">Make It Move: Animating in Blender</span>
+          <span class="session modeling" role="listitem">Becoming the Cube: Intro to Blender</span>
         </div>
       </li>
 
       <!-- Day 2 -->
       <li class="day-block">
         <p class="day-meta">Tuesday · July 7, 2026</p>
-        <h3 class="day-title">Motion &amp; The Cube</h3>
+        <h3 class="day-title">Shape &amp; Form</h3>
         <div class="sessions" role="list">
           <span class="session drawing" role="listitem">Drawing Exercises</span>
-          <span class="session animation" role="listitem">Motion &amp; Emotion: History of Animation</span>
-          <span class="session modeling" role="listitem">Becoming the Cube: Intro to Blender</span>
+          <span class="session modeling" role="listitem">Modeling with Primitive Objects</span>
+          <span class="session modeling" role="listitem">Shape People: 3D Character Design</span>
         </div>
       </li>
 
       <!-- Day 3 -->
       <li class="day-block">
         <p class="day-meta">Wednesday · July 8, 2026</p>
-        <h3 class="day-title">Story &amp; Character</h3>
+        <h3 class="day-title">Motion &amp; Capture</h3>
         <div class="sessions" role="list">
           <span class="session drawing" role="listitem">Drawing Exercises</span>
-          <span class="session other" role="listitem">Storyboarding for Storytelling</span>
-          <span class="session animation" role="listitem">Animation Exercises</span>
-          <span class="session modeling" role="listitem">Shape People: 3D Character Design</span>
+          <span class="session animation" role="listitem">Motion &amp; Emotion: History of Animation</span>
+          <span class="session modeling" role="listitem">Photogrammetry and Alternative Modeling</span>
+          <span class="session animation" role="listitem">Make It Move: Animating in Blender</span>
+          <span class="session other" role="listitem">Screening: TBD</span>
         </div>
       </li>
 
       <!-- Day 4 -->
       <li class="day-block">
         <p class="day-meta">Thursday · July 9, 2026</p>
-        <h3 class="day-title">Modeling &amp; Loops</h3>
+        <h3 class="day-title">Story &amp; Loops</h3>
         <div class="sessions" role="list">
           <span class="session drawing" role="listitem">Drawing Exercises</span>
-          <span class="session modeling" role="listitem">Modeling with Primitive Objects</span>
+          <span class="session other" role="listitem">Storyboarding for Storytelling</span>
           <span class="session animation" role="listitem">Loop Lab: GIFs in Blender</span>
         </div>
       </li>
@@ -491,13 +492,11 @@
       <!-- Day 5 -->
       <li class="day-block">
         <p class="day-meta">Friday · July 10, 2026</p>
-        <h3 class="day-title">World Building &amp; Screening</h3>
+        <h3 class="day-title">Sculpt &amp; World Build</h3>
         <div class="sessions" role="list">
           <span class="session drawing" role="listitem">Drawing Exercises</span>
-          <span class="session modeling" role="listitem">Photogrammetry &amp; Alternative Modeling</span>
           <span class="session modeling" role="listitem">3D Sculpting in Blender</span>
           <span class="session animation" role="listitem">World Building: Ambient Animation</span>
-          <span class="session other" role="listitem">Screening: TBD</span>
         </div>
       </li>
 
