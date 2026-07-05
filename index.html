@@ -104,7 +104,7 @@
     }
     .hud-label {
       font-family: var(--mono);
-      font-size: 0.68rem;
+      font-size: 0.78rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
@@ -122,9 +122,10 @@
 
     /* ── Wireframe cube ────────────────────────────────────────── */
     .cube-wrap {
-      width: 64px;
-      height: 64px;
-      perspective: 200px;
+      width: 88px;
+      height: 88px;
+      perspective: 280px;
+      margin: 1rem 0;
     }
     .cube {
       width: 100%;
@@ -143,15 +144,15 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border: 1.5px solid;
+      border: 3px solid;
       background: transparent;
     }
-    .face-front  { transform: translateZ(32px); border-color: rgba(58,134,232,0.7); }
-    .face-back   { transform: translateZ(-32px) rotateY(180deg); border-color: rgba(58,134,232,0.4); }
-    .face-left   { transform: translateX(-32px) rotateY(-90deg); border-color: rgba(232,64,58,0.7); }
-    .face-right  { transform: translateX(32px) rotateY(90deg);  border-color: rgba(232,64,58,0.4); }
-    .face-top    { transform: translateY(-32px) rotateX(90deg); border-color: rgba(92,186,71,0.7); }
-    .face-bottom { transform: translateY(32px) rotateX(-90deg); border-color: rgba(92,186,71,0.4); }
+    .face-front  { transform: translateZ(44px); border-color: rgba(58,134,232,0.85); }
+    .face-back   { transform: translateZ(-44px) rotateY(180deg); border-color: rgba(58,134,232,0.5); }
+    .face-left   { transform: translateX(-44px) rotateY(-90deg); border-color: rgba(232,64,58,0.85); }
+    .face-right  { transform: translateX(44px) rotateY(90deg);  border-color: rgba(232,64,58,0.5); }
+    .face-top    { transform: translateY(-44px) rotateX(90deg); border-color: rgba(92,186,71,0.85); }
+    .face-bottom { transform: translateY(44px) rotateX(-90deg); border-color: rgba(92,186,71,0.5); }
 
     /* ── Legend / axis key ─────────────────────────────────────── */
     .legend {
@@ -195,7 +196,7 @@
       padding-bottom: 0.75rem;
     }
     .section-header h2 {
-      font-size: 1.35rem;
+      font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.01em;
     }
@@ -226,12 +227,12 @@
       line-height: 1;
     }
     .link-card .link-title {
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 600;
     }
     .link-card .link-desc {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       color: var(--muted);
       letter-spacing: 0.04em;
     }
@@ -281,14 +282,14 @@
 
     .day-meta {
       font-family: var(--mono);
-      font-size: 0.68rem;
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
       color: var(--muted);
       text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
     .day-title {
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 0.9rem;
       letter-spacing: -0.01em;
@@ -305,8 +306,8 @@
       align-items: center;
       gap: 0.35rem;
       font-family: var(--mono);
-      font-size: 0.7rem;
-      padding: 0.3rem 0.65rem;
+      font-size: 0.82rem;
+      padding: 0.35rem 0.75rem;
       border-radius: 3px;
       border: 1px solid;
     }
@@ -396,9 +397,9 @@
     <span class="accent-z">Camp</span>
   </h1>
 
-  <p class="hud-label" style="color:var(--text); font-size:0.8rem; max-width:480px; line-height:1.6;">
+  <p class="hud-label" style="color:var(--text); font-size:0.9rem; max-width:520px; line-height:1.6;">
     Official schedule and resources for the 2026 MAD Blender Summer Camp.
-    Five days of drawing, 3D modeling, and animation — everything is just a box.
+    2 weeks of drawing, 3D modeling, and animation.
   </p>
 
   <div class="legend" role="list" aria-label="Category color key">
@@ -419,16 +420,6 @@
     </div>
 
     <div class="links-grid">
-      <a class="link-card" href="#" aria-label="Discord server invite (coming soon)">
-        <span class="link-icon">💬</span>
-        <span class="link-title">Discord</span>
-        <span class="link-desc">Community Server</span>
-      </a>
-      <a class="link-card" href="#" aria-label="Notion hub (coming soon)">
-        <span class="link-icon">📋</span>
-        <span class="link-title">Notion Hub</span>
-        <span class="link-desc">Notes &amp; Resources</span>
-      </a>
       <a class="link-card" href="#" aria-label="Submission page (coming soon)">
         <span class="link-icon">📤</span>
         <span class="link-title">Submissions</span>
