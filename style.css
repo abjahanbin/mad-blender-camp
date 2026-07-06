@@ -452,18 +452,25 @@ header.day-header { position: relative; overflow: hidden; }
   background: rgba(58,134,232,0.1);
 }
 .session-link:focus-visible { outline: 2px solid var(--z); outline-offset: 2px; }
-.session-link-title {
+.session-link-name {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.session-link-url {
   font-family: var(--mono);
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   letter-spacing: 0.04em;
   color: var(--z);
+  margin-bottom: 0.15rem;
 }
 .session-link-desc {
-  font-family: var(--display);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.6;
   color: var(--text);
-  opacity: 0.82;
+  opacity: 0.72;
 }
 
 /* ── DAY DETAIL: prev/next pagination ─────────────────────────── */
