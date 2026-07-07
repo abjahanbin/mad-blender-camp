@@ -498,9 +498,116 @@ header.day-header { position: relative; overflow: hidden; }
 .day-pagination a:focus-visible { outline: 2px solid var(--z); outline-offset: 2px; }
 .pg-disabled { opacity: 0.3; cursor: default; }
 
+/* ── Primitives & Shortcuts (Day 2) ────────────────────────────── */
+.prim-section-header {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.45rem;
+  margin: 1.5rem 0 1rem;
+}
+.gizmo-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.gizmo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.gizmo-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+.shortcut-section {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.shortcut-group-wrap { display: flex; flex-direction: column; gap: 0.4rem; }
+.shortcut-group-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.shortcut-group { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.shortcut-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.28rem 0.55rem;
+  white-space: nowrap;
+}
+.sc-label { color: var(--muted); font-size: 0.66rem; }
+kbd {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 0.1rem 0.32rem;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+kbd.ax { border-color: var(--x); color: var(--x); background: rgba(232,64,58,0.12); }
+kbd.ay { border-color: var(--y); color: var(--y); background: rgba(92,186,71,0.12); }
+kbd.az { border-color: var(--z); color: var(--z); background: rgba(58,134,232,0.12); }
+.primitives-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+.prim-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.6rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: border-color 0.15s;
+}
+.prim-card:hover { border-color: rgba(58,134,232,0.3); }
+.prim-canvas { width: 100%; height: auto; display: block; }
+.prim-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* ── Responsive ────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   nav { gap: 1rem; }
   .links-grid { grid-template-columns: 1fr 1fr; }
   .day-pagination { flex-direction: column; align-items: stretch; text-align: center; }
+  .primitives-grid { grid-template-columns: repeat(2, 1fr); }
+  .gizmo-row { flex-direction: column; }
 }
