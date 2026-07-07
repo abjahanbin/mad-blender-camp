@@ -167,124 +167,92 @@
 
       <!-- ── Shape personality ──────────────────────────────────── -->
       <div class="prim-section-header">Shape Personality</div>
-      <div class="shape-personality-grid">
+      <div class="personality-strip">
 
-        <div class="personality-card">
-          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="26" fill="rgba(58,134,232,0.1)" stroke="#3a86e8" stroke-width="2"/>
+        <div class="personality-item">
+          <svg width="80" height="80" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" fill="rgba(58,134,232,0.12)" stroke="#3a86e8" stroke-width="2"/>
           </svg>
-          <span class="personality-name">Sphere / Circle</span>
-          <span class="personality-traits">Friendly<br>Soft<br>Approachable</span>
+          <span class="personality-label">Round / Organic</span>
+          <span class="personality-desc">Friendly · Soft · Approachable<br>Heroes, sidekicks, creatures</span>
         </div>
 
-        <div class="personality-card">
-          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+        <span class="personality-vs">vs.</span>
+
+        <div class="personality-item">
+          <svg width="80" height="80" viewBox="0 0 64 64" aria-hidden="true">
             <rect x="9" y="9" width="46" height="46" rx="2" fill="rgba(92,186,71,0.1)" stroke="#5cba47" stroke-width="2"/>
           </svg>
-          <span class="personality-name">Cube / Box</span>
-          <span class="personality-traits">Strong<br>Reliable<br>Robotic</span>
-        </div>
-
-        <div class="personality-card">
-          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-            <polygon points="32,6 58,58 6,58" fill="rgba(232,64,58,0.1)" stroke="#e8403a" stroke-width="2"/>
-          </svg>
-          <span class="personality-name">Cone / Triangle</span>
-          <span class="personality-traits">Sharp<br>Dynamic<br>Dangerous</span>
-        </div>
-
-        <div class="personality-card">
-          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="16" y="6" width="32" height="52" rx="16" fill="rgba(212,216,224,0.05)" stroke="rgba(212,216,224,0.35)" stroke-width="2"/>
-          </svg>
-          <span class="personality-name">Cylinder</span>
-          <span class="personality-traits">Neutral<br>Mechanical<br>Limb-like</span>
+          <span class="personality-label">Angular / Boxy</span>
+          <span class="personality-desc">Strong · Reliable · Robotic<br>Robots, knights, buildings</span>
         </div>
 
       </div>
 
       <!-- ── Non-uniform scaling ────────────────────────────────── -->
-      <div class="prim-section-header">Non-Uniform Scaling — S + Axis</div>
-      <div class="scale-demos">
+      <div class="prim-section-header">Non-Uniform Scaling — S + Axis Key</div>
+      <div class="scale-strip">
 
-        <div class="scale-demo">
-          <div class="scale-vis">
+        <div class="scale-unit">
+          <div class="scale-before-after">
             <div class="scale-box scale-box-default"></div>
             <span class="scale-arrow">→</span>
             <div class="scale-box scale-box-tall"></div>
           </div>
-          <div class="scale-keys"><kbd>S</kbd><kbd class="az">Z</kbd></div>
-          <span class="scale-desc">Scale up / down</span>
+          <div class="scale-unit-keys"><kbd>S</kbd><kbd class="az">Z</kbd></div>
+          <span class="scale-unit-desc">Height</span>
         </div>
 
-        <div class="scale-demo">
-          <div class="scale-vis">
+        <div class="scale-unit">
+          <div class="scale-before-after">
             <div class="scale-box scale-box-default"></div>
             <span class="scale-arrow">→</span>
             <div class="scale-box scale-box-wide"></div>
           </div>
-          <div class="scale-keys"><kbd>S</kbd><kbd class="ax">X</kbd></div>
-          <span class="scale-desc">Scale left / right</span>
+          <div class="scale-unit-keys"><kbd>S</kbd><kbd class="ax">X</kbd></div>
+          <span class="scale-unit-desc">Width</span>
         </div>
 
-        <div class="scale-demo">
-          <div class="scale-vis">
+        <div class="scale-unit">
+          <div class="scale-before-after">
             <div class="scale-box scale-box-default"></div>
             <span class="scale-arrow">→</span>
             <div class="scale-box scale-box-flat"></div>
           </div>
-          <div class="scale-keys"><kbd>S</kbd><kbd class="ay">Y</kbd></div>
-          <span class="scale-desc">Scale forward / back</span>
+          <div class="scale-unit-keys"><kbd>S</kbd><kbd class="ay">Y</kbd></div>
+          <span class="scale-unit-desc">Depth</span>
         </div>
 
       </div>
 
       <!-- ── Build guide ────────────────────────────────────────── -->
       <div class="prim-section-header">How to Build a Shape Character</div>
-      <div class="build-steps">
+      <div class="build-steps-list">
 
-        <div class="build-step">
-          <span class="step-num">01</span>
-          <div class="step-body">
-            <span class="step-title">Choose your head shape</span>
-            <span class="step-desc">Sphere for soft and friendly, cube for boxy and robotic. This single choice sets the whole character's personality before anything else is placed.</span>
-            <div class="step-keys"><kbd>Shift</kbd><kbd>A</kbd><span class="step-note">→ Mesh → UV Sphere or Cube</span></div>
+        <div class="build-step-row">
+          <span class="step-numeral">01</span>
+          <div class="step-content-col">
+            <span class="step-title-new">Start with the head</span>
+            <span class="step-desc-new">Sphere for soft and friendly, cube for boxy and robotic. This single choice defines the whole character's personality before anything else is placed.</span>
+            <div class="step-keys-row"><kbd>Shift</kbd><kbd>A</kbd><span class="step-note">→ Mesh → pick your shape</span></div>
           </div>
         </div>
 
-        <div class="build-step">
-          <span class="step-num">02</span>
-          <div class="step-body">
-            <span class="step-title">Add and shape the torso</span>
-            <span class="step-desc">Add a second mesh for the body, then scale it to the right proportions — tall and lean, short and wide, or somewhere between.</span>
-            <div class="step-keys"><kbd>S</kbd><kbd class="az">Z</kbd><span class="step-note">stretch height</span></div>
+        <div class="build-step-row">
+          <span class="step-numeral">02</span>
+          <div class="step-content-col">
+            <span class="step-title-new">Build the body</span>
+            <span class="step-desc-new">Add a torso and use S + Z to stretch it tall or S + X to make it wide. Move it under the head with G + Z. Add cylinders for limbs — scale them thin with S + X, then duplicate with Shift+D.</span>
+            <div class="step-keys-row"><kbd>S</kbd><kbd class="az">Z</kbd><span class="step-note">tall ·</span><kbd>G</kbd><kbd class="az">Z</kbd><span class="step-note">position ·</span><kbd>Shift</kbd><kbd>D</kbd><span class="step-note">duplicate</span></div>
           </div>
         </div>
 
-        <div class="build-step">
-          <span class="step-num">03</span>
-          <div class="step-body">
-            <span class="step-title">Stack your pieces</span>
-            <span class="step-desc">Move parts into position using axis-locked grab. G → Z moves up and down. G → X offsets left and right. G → Y moves forward and back.</span>
-            <div class="step-keys"><kbd>G</kbd><kbd class="az">Z</kbd><span class="step-note">/ </span><kbd>G</kbd><kbd class="ax">X</kbd><span class="step-note">/ </span><kbd>G</kbd><kbd class="ay">Y</kbd></div>
-          </div>
-        </div>
-
-        <div class="build-step">
-          <span class="step-num">04</span>
-          <div class="step-body">
-            <span class="step-title">Add limbs</span>
-            <span class="step-desc">Cylinders make great arms and legs. Scale them thin, then duplicate with Shift+D to mirror a limb to the other side. Move the copy into place with G → X.</span>
-            <div class="step-keys"><kbd>S</kbd><kbd class="ax">X</kbd><span class="step-note">thin it down, then</span><kbd>Shift</kbd><kbd>D</kbd><span class="step-note">duplicate</span></div>
-          </div>
-        </div>
-
-        <div class="build-step">
-          <span class="step-num">05</span>
-          <div class="step-body">
-            <span class="step-title">Add personality details</span>
-            <span class="step-desc">Small spheres for eyes, cones for horns or feet, a torus for a hat brim or collar. Scale and position until it feels right — trust your instincts.</span>
-            <div class="step-keys"><kbd>Shift</kbd><kbd>A</kbd><span class="step-note">→ Mesh → any primitive</span></div>
+        <div class="build-step-row">
+          <span class="step-numeral">03</span>
+          <div class="step-content-col">
+            <span class="step-title-new">Add details and personality</span>
+            <span class="step-desc-new">Small spheres for eyes, cones for horns, a torus for accessories. Step back and look at the silhouette — if it reads clearly from a distance, it's working.</span>
+            <div class="step-keys-row"><kbd>Shift</kbd><kbd>A</kbd><span class="step-note">→ Mesh → any primitive</span></div>
           </div>
         </div>
 

@@ -621,129 +621,136 @@ kbd.az { border-color: var(--z); color: var(--z); background: rgba(58,134,232,0.
 }
 .prim-card:hover { border-color: rgba(58,134,232,0.3); }
 /* ── Shape People: personality, scaling, build guide ───────────── */
-.shape-personality-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.65rem;
-}
-.personality-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.2rem 0.75rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.65rem;
-  text-align: center;
-}
-.personality-name {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.personality-traits {
-  font-size: 0.88rem;
-  line-height: 1.7;
-  color: var(--text);
-  opacity: 0.65;
-}
-.scale-demos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
-}
-.scale-demo {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.1rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  text-align: center;
-}
-.scale-vis {
+.personality-strip {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0;
+  padding: 1rem 0 1.25rem;
+}
+.personality-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 0.65rem;
-  height: 72px;
+  text-align: center;
+}
+.personality-vs {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+  opacity: 0.45;
+  flex-shrink: 0;
+  padding: 0 2rem;
+}
+.personality-label {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.personality-desc {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+.scale-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1rem 0 1.25rem;
+  flex-wrap: wrap;
+}
+.scale-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+.scale-before-after {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 .scale-box {
-  border: 2px solid rgba(92,186,71,0.55);
+  border: 2px solid rgba(92,186,71,0.5);
   background: rgba(92,186,71,0.07);
   border-radius: 2px;
   flex-shrink: 0;
 }
-.scale-box-default { width: 36px; height: 36px; }
-.scale-box-tall    { width: 22px; height: 62px; }
-.scale-box-wide    { width: 66px; height: 20px; }
-.scale-box-flat    { width: 46px; height: 14px; border-radius: 7px; }
+.scale-box-default { width: 34px; height: 34px; }
+.scale-box-tall    { width: 20px; height: 60px; }
+.scale-box-wide    { width: 64px; height: 18px; }
+.scale-box-flat    { width: 44px; height: 12px; border-radius: 6px; }
 .scale-arrow {
   font-family: var(--mono);
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--muted);
+  opacity: 0.5;
   flex-shrink: 0;
 }
-.scale-keys {
+.scale-unit-keys {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  justify-content: center;
+  gap: 0.28rem;
 }
-.scale-desc {
+.scale-unit-desc {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--muted);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.build-steps {
+.build-steps-list {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
+  gap: 1.75rem;
+  padding: 0.5rem 0 0.25rem;
 }
-.build-step {
+.build-step-row {
   display: flex;
-  gap: 1.25rem;
-  padding: 1.1rem 1.25rem;
-  border-bottom: 1px solid var(--border);
+  gap: 1.5rem;
   align-items: flex-start;
 }
-.build-step:last-child { border-bottom: none; }
-.step-num {
+.step-numeral {
   font-family: var(--mono);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--y);
-  flex-shrink: 0;
-  min-width: 1.8rem;
-  line-height: 1.3;
-}
-.step-body { display: flex; flex-direction: column; gap: 0.3rem; }
-.step-title {
-  font-family: var(--display);
-  font-size: 0.97rem;
+  font-size: 0.62rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--y);
+  opacity: 0.6;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+  width: 1.6rem;
+}
+.step-content-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.step-title-new {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--text);
 }
-.step-desc {
-  font-size: 0.88rem;
-  line-height: 1.65;
+.step-desc-new {
+  font-size: 0.9rem;
+  line-height: 1.72;
   color: var(--text);
-  opacity: 0.62;
-  max-width: 58ch;
+  opacity: 0.6;
+  max-width: 60ch;
 }
-.step-keys {
+.step-keys-row {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   flex-wrap: wrap;
 }
 .step-note { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
@@ -765,6 +772,7 @@ kbd.az { border-color: var(--z); color: var(--z); background: rgba(58,134,232,0.
   .primitives-grid { grid-template-columns: repeat(2, 1fr); }
   .gizmo-standalone { flex-direction: column; gap: 1rem; }
   .shortcut-keys { min-width: 130px; }
-  .shape-personality-grid { grid-template-columns: repeat(2, 1fr); }
-  .scale-demos { grid-template-columns: 1fr; }
+  .personality-strip { flex-direction: column; gap: 1.5rem; }
+  .personality-vs { padding: 0; }
+  .scale-strip { gap: 1.5rem; }
 }
