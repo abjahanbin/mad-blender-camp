@@ -50,11 +50,11 @@
       <!-- ── Viewport controls ──────────────────────────────────── -->
       <div class="prim-section-header">Viewport Navigation &amp; Shortcuts</div>
 
-      <div class="gizmo-row">
+      <div class="gizmo-standalone">
 
         <!-- Move gizmo -->
         <div class="gizmo-wrap" aria-label="Blender axis gizmo">
-          <svg width="96" height="96" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+          <svg width="140" height="140" viewBox="0 0 96 96" fill="none" aria-hidden="true">
             <!-- center dot -->
             <circle cx="48" cy="58" r="3.5" fill="#555"/>
             <!-- X axis — right (red) -->
@@ -85,46 +85,42 @@
           </div>
         </div>
 
-        <!-- Shortcut groups -->
-        <div class="shortcut-section">
+      </div><!-- end gizmo-standalone -->
 
-          <div class="shortcut-group-wrap">
-            <div class="shortcut-group-label">Navigate Viewport</div>
-            <div class="shortcut-group">
-              <div class="shortcut-item"><kbd>MMB</kbd><span class="sc-label">Orbit</span></div>
-              <div class="shortcut-item"><kbd>Shift</kbd><kbd>MMB</kbd><span class="sc-label">Pan</span></div>
-              <div class="shortcut-item"><kbd>Scroll</kbd><span class="sc-label">Zoom</span></div>
-              <div class="shortcut-item"><kbd>Num 1</kbd><span class="sc-label">Front</span></div>
-              <div class="shortcut-item"><kbd>Num 3</kbd><span class="sc-label">Side</span></div>
-              <div class="shortcut-item"><kbd>Num 7</kbd><span class="sc-label">Top</span></div>
-              <div class="shortcut-item"><kbd>Num 5</kbd><span class="sc-label">Ortho / Persp</span></div>
-            </div>
-          </div>
+      <!-- Shortcut cards -->
+      <div class="shortcut-grid-3">
 
-          <div class="shortcut-group-wrap">
-            <div class="shortcut-group-label">Transform</div>
-            <div class="shortcut-group">
-              <div class="shortcut-item"><kbd>G</kbd><span class="sc-label">Grab / Move</span></div>
-              <div class="shortcut-item"><kbd>R</kbd><span class="sc-label">Rotate</span></div>
-              <div class="shortcut-item"><kbd>S</kbd><span class="sc-label">Scale</span></div>
-              <div class="shortcut-item"><span class="sc-label">then lock axis →</span><kbd class="ax">X</kbd><kbd class="ay">Y</kbd><kbd class="az">Z</kbd></div>
-              <div class="shortcut-item"><kbd>Enter</kbd><span class="sc-label">Confirm</span></div>
-              <div class="shortcut-item"><kbd>Esc</kbd><span class="sc-label">Cancel</span></div>
-            </div>
-          </div>
-
-          <div class="shortcut-group-wrap">
-            <div class="shortcut-group-label">Edit Mode</div>
-            <div class="shortcut-group">
-              <div class="shortcut-item"><kbd>Tab</kbd><span class="sc-label">Toggle Edit Mode</span></div>
-              <div class="shortcut-item"><kbd>Shift</kbd><kbd>A</kbd><span class="sc-label">Add Mesh</span></div>
-              <div class="shortcut-item"><kbd>A</kbd><span class="sc-label">Select All / None</span></div>
-              <div class="shortcut-item"><kbd>B</kbd><span class="sc-label">Box Select</span></div>
-              <div class="shortcut-item"><kbd>Alt</kbd><kbd>Z</kbd><span class="sc-label">X-Ray Mode</span></div>
-            </div>
-          </div>
-
+        <div class="shortcut-card">
+          <div class="shortcut-card-label">Navigate Viewport</div>
+          <div class="shortcut-item"><kbd>MMB</kbd><span class="sc-label">Orbit</span></div>
+          <div class="shortcut-item"><kbd>Shift</kbd><kbd>MMB</kbd><span class="sc-label">Pan</span></div>
+          <div class="shortcut-item"><kbd>Scroll</kbd><span class="sc-label">Zoom</span></div>
+          <div class="shortcut-item"><kbd>Num 1</kbd><span class="sc-label">Front View</span></div>
+          <div class="shortcut-item"><kbd>Num 3</kbd><span class="sc-label">Side View</span></div>
+          <div class="shortcut-item"><kbd>Num 7</kbd><span class="sc-label">Top View</span></div>
+          <div class="shortcut-item"><kbd>Num 5</kbd><span class="sc-label">Ortho / Persp</span></div>
         </div>
+
+        <div class="shortcut-card">
+          <div class="shortcut-card-label">Transform</div>
+          <div class="shortcut-item"><kbd>G</kbd><span class="sc-label">Grab / Move</span></div>
+          <div class="shortcut-item"><kbd>R</kbd><span class="sc-label">Rotate</span></div>
+          <div class="shortcut-item"><kbd>S</kbd><span class="sc-label">Scale</span></div>
+          <div class="shortcut-item"><kbd>Enter</kbd><span class="sc-label">Confirm</span></div>
+          <div class="shortcut-item"><kbd>Esc</kbd><span class="sc-label">Cancel</span></div>
+          <div class="shortcut-item" style="margin-top:0.3rem"><span class="sc-label">Lock axis after G / R / S:</span></div>
+          <div class="shortcut-item"><kbd class="ax">X</kbd><kbd class="ay">Y</kbd><kbd class="az">Z</kbd></div>
+        </div>
+
+        <div class="shortcut-card">
+          <div class="shortcut-card-label">Edit Mode</div>
+          <div class="shortcut-item"><kbd>Tab</kbd><span class="sc-label">Toggle Edit Mode</span></div>
+          <div class="shortcut-item"><kbd>Shift</kbd><kbd>A</kbd><span class="sc-label">Add Mesh</span></div>
+          <div class="shortcut-item"><kbd>A</kbd><span class="sc-label">Select All / None</span></div>
+          <div class="shortcut-item"><kbd>B</kbd><span class="sc-label">Box Select</span></div>
+          <div class="shortcut-item"><kbd>Alt</kbd><kbd>Z</kbd><span class="sc-label">X-Ray Mode</span></div>
+        </div>
+
       </div>
 
       <!-- ── Primitives grid ────────────────────────────────────── -->
@@ -278,12 +274,12 @@
       shape: { verts: [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]],
                edges: [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]] },
       rotX: -0.38 },
-    { id: 'prim-circle',   shape: makeCircle(24),          rotX: -0.88 },
+    { id: 'prim-circle',   shape: makeCircle(24),          rotX: 0, animateX: true },
     { id: 'prim-uvsphere', shape: makeUVSphere(7, 12),     rotX: -0.32 },
     { id: 'prim-ico',      shape: makeIcoSphere(),         rotX: -0.28 },
     { id: 'prim-cylinder', shape: makeCylinder(16),        rotX: -0.36 },
     { id: 'prim-cone',     shape: makeCone(16),            rotX: -0.36 },
-    { id: 'prim-torus',    shape: makeTorus(0.68, 0.28, 14, 8), rotX: -1.02 },
+    { id: 'prim-torus',    shape: makeTorus(0.68, 0.28, 14, 8), rotX: 0, animateX: true },
     { id: 'prim-grid',     shape: makeGrid(3),             rotX: -0.88 },
   ];
 
@@ -312,7 +308,7 @@
       var avgZ = (pts[a][2] + pts[b][2]) / 2;
       var alpha = Math.max(0.15, Math.min(0.9, 0.52 + avgZ * 0.24));
       ctx.strokeStyle = 'rgba(58,134,232,' + alpha.toFixed(2) + ')';
-      ctx.lineWidth = 1.3;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(pts[a][0], pts[a][1]);
       ctx.lineTo(pts[b][0], pts[b][1]);
@@ -344,7 +340,9 @@
     var ry = t * 0.0006;
     SHAPES.forEach(function (s) {
       var canvas = document.getElementById(s.id);
-      if (canvas) render(canvas, s.shape, ry, s.rotX);
+      if (!canvas) return;
+      var rx = s.animateX ? t * 0.00028 : s.rotX;
+      render(canvas, s.shape, ry, rx);
     });
     requestAnimationFrame(tick);
   }
