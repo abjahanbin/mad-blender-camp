@@ -538,39 +538,54 @@ header.day-header { position: relative; overflow: hidden; }
   font-size: 0.82rem;
   letter-spacing: 0.05em;
 }
-.shortcut-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.shortcut-tables {
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
 }
-.shortcut-card {
-  background: var(--bg);
+.shortcut-table {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  overflow: hidden;
 }
-.shortcut-card-label {
+.shortcut-table-header {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  padding-bottom: 0.55rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(255,255,255,0.03);
   border-bottom: 1px solid var(--border);
 }
-.shortcut-item {
+.shortcut-row {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0.82rem 1.25rem;
+  border-bottom: 1px solid var(--border);
 }
-.sc-label { color: var(--muted); font-size: 0.78rem; }
+.shortcut-row:last-child { border-bottom: none; }
+.shortcut-keys {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+.key-hint {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-right: 0.15rem;
+}
+.shortcut-desc {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: var(--text);
+  opacity: 0.6;
+}
 kbd {
   font-family: var(--mono);
   font-size: 0.76rem;
@@ -620,6 +635,6 @@ kbd.az { border-color: var(--z); color: var(--z); background: rgba(58,134,232,0.
   .links-grid { grid-template-columns: 1fr 1fr; }
   .day-pagination { flex-direction: column; align-items: stretch; text-align: center; }
   .primitives-grid { grid-template-columns: repeat(2, 1fr); }
-  .shortcut-grid-3 { grid-template-columns: 1fr; }
   .gizmo-standalone { flex-direction: column; gap: 1rem; }
+  .shortcut-keys { min-width: 130px; }
 }
