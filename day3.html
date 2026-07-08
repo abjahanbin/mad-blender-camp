@@ -56,6 +56,164 @@
       <p class="session-detail-desc">
         Keyframe animation fundamentals in Blender. Set position, rotation, and scale keys. Use the timeline and graph editor to control timing and easing. By the end of this session your cube will be doing something — bouncing, spinning, or telling a tiny story.
       </p>
+
+      <!-- ── 1: Animation Shortcuts ── -->
+      <div class="prim-section-header">Animation Shortcuts</div>
+      <div class="shortcut-tables">
+        <div class="shortcut-table">
+          <div class="shortcut-table-header">Timeline &amp; Playback</div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="az">I</kbd></div>
+            <div class="shortcut-desc">Insert Keyframe</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Space</kbd></div>
+            <div class="shortcut-desc">Play / Pause</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>←</kbd> <kbd>→</kbd></div>
+            <div class="shortcut-desc">Step one frame</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd>←</kbd></div>
+            <div class="shortcut-desc">Jump to first frame</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd>→</kbd></div>
+            <div class="shortcut-desc">Jump to last frame</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Alt</kbd> <kbd class="az">I</kbd></div>
+            <div class="shortcut-desc">Delete Keyframe</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 2: What is a Keyframe ── -->
+      <div class="prim-section-header">What is a Keyframe?</div>
+      <div class="kf-vis">
+        <svg viewBox="0 0 580 115" width="100%" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Keyframe diagram: two keyframes on a timeline, Blender fills in the motion between them">
+          <rect x="10" y="8" width="80" height="58" rx="3" fill="rgba(58,134,232,0.06)" stroke="rgba(58,134,232,0.28)" stroke-width="1.5"/>
+          <text x="50" y="44" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="22" fill="rgba(58,134,232,0.45)">&#9632;</text>
+          <text x="50" y="59" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="0.1em" fill="rgba(58,134,232,0.65)">POSE A</text>
+          <line x1="94" y1="33" x2="483" y2="33" stroke="rgba(58,134,232,0.15)" stroke-width="1.5" stroke-dasharray="5,5"/>
+          <polygon points="483,28 496,33 483,38" fill="rgba(58,134,232,0.2)"/>
+          <text x="290" y="22" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" letter-spacing="0.05em" fill="rgba(255,255,255,0.16)">Blender fills this in</text>
+          <rect x="490" y="8" width="80" height="58" rx="3" fill="rgba(58,134,232,0.06)" stroke="rgba(58,134,232,0.28)" stroke-width="1.5"/>
+          <text x="530" y="44" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="22" fill="rgba(58,134,232,0.45)">&#9632;</text>
+          <text x="530" y="59" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="0.1em" fill="rgba(58,134,232,0.65)">POSE B</text>
+          <line x1="10" y1="90" x2="570" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+          <line x1="170" y1="86" x2="170" y2="94" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <line x1="290" y1="86" x2="290" y2="94" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <line x1="410" y1="86" x2="410" y2="94" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <polygon points="50,83 57,90 50,97 43,90" fill="#e8983a"/>
+          <polygon points="530,83 537,90 530,97 523,90" fill="#e8983a"/>
+          <text x="50" y="110" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="0.06em" fill="rgba(255,255,255,0.25)">FRAME 1</text>
+          <text x="530" y="110" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="0.06em" fill="rgba(255,255,255,0.25)">FRAME 24</text>
+        </svg>
+      </div>
+
+      <!-- ── 3: Ease In / Ease Out ── -->
+      <div class="prim-section-header">Ease In / Ease Out</div>
+      <div class="ease-pair">
+        <div class="ease-card">
+          <div class="ease-card-label">Linear</div>
+          <svg viewBox="0 0 120 80" width="100%" fill="none" aria-label="Linear motion: straight diagonal line, evenly spaced dots">
+            <line x1="8" y1="8" x2="8" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="8" y1="72" x2="112" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="8" y1="72" x2="112" y2="8" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+            <circle cx="8"    cy="72"   r="2.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="25.3" cy="61.3" r="2.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="42.7" cy="50.7" r="2.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="60"   cy="40"   r="2.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="77.3" cy="29.3" r="2.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="94.7" cy="18.7" r="2.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="112"  cy="8"    r="2.5" fill="rgba(255,255,255,0.5)"/>
+          </svg>
+          <svg viewBox="0 0 120 16" width="100%" aria-hidden="true">
+            <circle cx="10"   cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="26.7" cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="43.3" cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="60"   cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="76.7" cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="93.3" cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="110"  cy="8" r="2.5" fill="rgba(255,255,255,0.3)"/>
+          </svg>
+          <div class="ease-card-desc">Constant speed —<br>mechanical, robotic</div>
+        </div>
+        <div class="ease-card">
+          <div class="ease-card-label">Ease In / Ease Out</div>
+          <svg viewBox="0 0 120 80" width="100%" fill="none" aria-label="Ease in/out: S-curve with dots clustered at start and end">
+            <line x1="8" y1="8" x2="8" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="8" y1="72" x2="112" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <path d="M 8,72 C 8.1,72 111.9,8 112,8" stroke="#3a86e8" stroke-width="2"/>
+            <circle cx="8"     cy="72"   r="2.5" fill="#3a86e8"/>
+            <circle cx="15.7"  cy="67.3" r="2.5" fill="#3a86e8"/>
+            <circle cx="35"    cy="55.4" r="2.5" fill="#3a86e8"/>
+            <circle cx="60"    cy="40"   r="2.5" fill="#3a86e8"/>
+            <circle cx="85"    cy="24.6" r="2.5" fill="#3a86e8"/>
+            <circle cx="104.3" cy="12.7" r="2.5" fill="#3a86e8"/>
+            <circle cx="112"   cy="8"    r="2.5" fill="#3a86e8"/>
+          </svg>
+          <svg viewBox="0 0 120 16" width="100%" aria-hidden="true">
+            <circle cx="10"  cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="13"  cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="17"  cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="35"  cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="60"  cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="85"  cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="103" cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="107" cy="8" r="2.5" fill="#3a86e8"/>
+            <circle cx="110" cy="8" r="2.5" fill="#3a86e8"/>
+          </svg>
+          <div class="ease-card-desc">Slow at both ends,<br>fast in the middle —<br>natural, alive</div>
+        </div>
+      </div>
+
+      <!-- ── 5: Step-by-Step First Animation ── -->
+      <div class="prim-section-header">Your First Keyframe Animation</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Select your object</div>
+            <div class="step-desc-new">Left-click the object you want to animate. Make sure the timeline at the bottom shows Frame 1.</div>
+            <div class="step-keys-row"><kbd>Left Click</kbd></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Insert your first keyframe</div>
+            <div class="step-desc-new">Press I and choose Location, Rotation &amp; Scale. A yellow diamond appears on the timeline — this locks in your first pose.</div>
+            <div class="step-keys-row"><kbd class="az">I</kbd> <span class="step-note">→ Location, Rotation &amp; Scale</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Jump forward in time</div>
+            <div class="step-desc-new">Click a later frame on the timeline or step forward with the arrow keys. Try Frame 24 — that's one second at 24fps.</div>
+            <div class="step-keys-row"><kbd>→</kbd> <span class="step-note">or click the timeline</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Move your object to a new pose</div>
+            <div class="step-desc-new">Grab, rotate, or scale your object into its second position. This is where Blender will animate toward.</div>
+            <div class="step-keys-row"><kbd class="ay">G</kbd> <kbd class="ax">R</kbd> <kbd>S</kbd></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Insert another keyframe and play</div>
+            <div class="step-desc-new">Press I again to lock in the new pose. Hit Space to watch Blender animate between them. You just made your first animation.</div>
+            <div class="step-keys-row"><kbd class="az">I</kbd> <span class="step-note">then</span> <kbd>Space</kbd></div>
+          </div>
+        </div>
+      </div>
     </article>
 
   </div>

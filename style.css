@@ -764,6 +764,40 @@ kbd.az { border-color: var(--z); color: var(--z); background: rgba(58,134,232,0.
   color: var(--muted);
 }
 
+/* ── Animation visuals (Day 3) ──────────────────────────────────── */
+.kf-vis { padding: 0.25rem 0 0.75rem; overflow-x: auto; }
+.ease-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.25rem 0 0.5rem;
+}
+.ease-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.1rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.ease-card-label {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.ease-card-desc {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 22ch;
+}
+.step-numeral.az { color: var(--z); }
+
 /* ── Responsive ────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   nav { gap: 1rem; }
@@ -775,4 +809,5 @@ kbd.az { border-color: var(--z); color: var(--z); background: rgba(58,134,232,0.
   .personality-strip { flex-direction: column; gap: 1.5rem; }
   .personality-vs { padding: 0; }
   .scale-strip { gap: 1.5rem; }
+  .ease-pair { grid-template-columns: 1fr; }
 }
