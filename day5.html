@@ -55,6 +55,83 @@
       <p class="session-detail-desc">
         Move beyond box modeling into organic form. Blender's sculpt mode lets you push, pull, pinch, and smooth geometry like digital clay. No more boxy topology — sculpt faces, creatures, terrain, or whatever shape is in your head.
       </p>
+
+      <!-- ── Setup Guide ── -->
+      <div class="prim-section-header">Sculpt Setup — Step by Step</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Block out the form</div>
+            <div class="step-desc-new">Use primitive objects to roughly build the overall shape. A character might be a sphere for the head, a cylinder for the torso, capsules for limbs. Proportions only — no detail yet.</div>
+            <div class="step-keys-row"><kbd>Shift</kbd> <kbd>A</kbd> <span class="step-note">Add mesh</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Apply scale to every object</div>
+            <div class="step-desc-new">Select each piece and apply its scale before sculpting. An unapplied scale makes brushes behave inconsistently — strokes in one direction feel stronger than another.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd>A</kbd> <span class="step-note">→ Scale</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Join into one mesh</div>
+            <div class="step-desc-new">Select all your blocking pieces and join them into a single object. Sculpt mode works on one mesh at a time — separate objects stay separate.</div>
+            <div class="step-keys-row"><kbd>A</kbd> <span class="step-note">select all, then</span> <kbd>Ctrl</kbd> <kbd>J</kbd></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Voxel Remesh</div>
+            <div class="step-desc-new">Your blocking geometry is jagged and uneven. Remesh replaces it with a uniform grid of polygons that brushes can push cleanly. Smaller voxel size = more detail. Remesh again any time topology gets messy.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd class="ay">R</kbd> <span class="step-note">in Sculpt Mode</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Sculpt — large forms first</div>
+            <div class="step-desc-new">Enter Sculpt Mode and work with a large brush on big proportions. Progressively shrink the brush as you move into surface detail. Add the story of the shape before you add the texture of it.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd>Tab</kbd> <span class="step-note">→ Sculpt Mode</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Shortcuts ── -->
+      <div class="prim-section-header">Sculpt Mode Shortcuts</div>
+      <div class="shortcut-tables">
+        <div class="shortcut-table">
+          <div class="shortcut-table-header">Brushes &amp; Controls</div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="ay">F</kbd></div>
+            <div class="shortcut-desc">Resize brush</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd class="ay">F</kbd></div>
+            <div class="shortcut-desc">Brush strength</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><span class="key-hint">hold</span> <kbd>Shift</kbd></div>
+            <div class="shortcut-desc">Smooth temporarily</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><span class="key-hint">hold</span> <kbd>Ctrl</kbd></div>
+            <div class="shortcut-desc">Invert brush direction</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>X</kbd></div>
+            <div class="shortcut-desc">Toggle X-axis symmetry</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Ctrl</kbd> <kbd class="ay">R</kbd></div>
+            <div class="shortcut-desc">Voxel Remesh</div>
+          </div>
+        </div>
+      </div>
     </article>
 
     <article class="session-detail animation">
