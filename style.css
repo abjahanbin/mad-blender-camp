@@ -7,9 +7,10 @@
   --muted:   #636a78;
 
   /* Blender axis gizmo colors */
-  --x: #e8403a;   /* red   — Drawing / 2D  */
-  --y: #5cba47;   /* green — Modeling / 3D */
-  --z: #3a86e8;   /* blue  — Animation     */
+  --x: #e8403a;   /* red    — Drawing / 2D  */
+  --y: #5cba47;   /* green  — Modeling / 3D */
+  --z: #3a86e8;   /* blue   — Animation     */
+  --s: #e8c23a;   /* yellow — Sound Design  */
 
   --nav-h:  52px;
   --radius: 6px;
@@ -174,6 +175,7 @@ h1 span.accent-z { color: var(--z); }
 .dot-x { background: var(--x); }
 .dot-y { background: var(--y); }
 .dot-z { background: var(--z); }
+.dot-s { background: var(--s); }
 .dot-w { background: var(--text); }
 
 /* ── Sections ──────────────────────────────────────────────────── */
@@ -308,9 +310,10 @@ section {
   border-radius: 3px;
   border: 1px solid;
 }
-.session.drawing  { color: var(--x); border-color: rgba(232,64,58,0.3);  background: rgba(232,64,58,0.06);  }
-.session.modeling { color: var(--y); border-color: rgba(92,186,71,0.3);  background: rgba(92,186,71,0.06);  }
-.session.animation{ color: var(--z); border-color: rgba(58,134,232,0.3); background: rgba(58,134,232,0.06); }
+.session.drawing  { color: var(--x); border-color: rgba(232,64,58,0.3);   background: rgba(232,64,58,0.06);   }
+.session.modeling { color: var(--y); border-color: rgba(92,186,71,0.3);   background: rgba(92,186,71,0.06);   }
+.session.animation{ color: var(--z); border-color: rgba(58,134,232,0.3);  background: rgba(58,134,232,0.06);  }
+.session.sound    { color: var(--s); border-color: rgba(232,194,58,0.3);  background: rgba(232,194,58,0.06);  }
 .session.other    { color: var(--text); border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.04); }
 
 /* ── Week 2 placeholder ────────────────────────────────────────── */
@@ -387,6 +390,7 @@ header.day-header { position: relative; overflow: hidden; }
 .session-detail.drawing   { border-left-color: var(--x); }
 .session-detail.modeling  { border-left-color: var(--y); }
 .session-detail.animation { border-left-color: var(--z); }
+.session-detail.sound     { border-left-color: var(--s); }
 .session-detail.other     { border-left-color: rgba(255,255,255,0.25); }
 
 .session-detail-top {
