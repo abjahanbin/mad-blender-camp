@@ -34,7 +34,7 @@
         <span class="session drawing">Drawing / 2D</span>
       </div>
       <p class="session-detail-desc">
-        Daily warm-up sketching. Today's focus: visualizing sound — draw what music looks, feels, or moves like. Try translating a rhythm into marks, a melody into line weight, a beat into shape. Sound becomes image.
+        Daily warm-up drawing. Some Gartic Phone and character sketching to get us warmed up for the week ahead. We'll use collaborative drawing prompts to shake off the rust, then shift into quick character design sketches — focusing on silhouette and personality in just a few lines. Fast, loose, and fun.
       </p>
     </article>
 
@@ -46,6 +46,124 @@
       <p class="session-detail-desc">
         The camera is a storytelling tool, not just a window. Learn to animate camera movement — dollies, orbits, focus pulls, and handheld shake — to give your scene a point of view. We'll also explore Blender's compositor to layer effects, adjust color grading, add glow and depth of field, and give your renders a final cinematic look.
       </p>
+
+      <!-- ── Camera Shortcuts ── -->
+      <div class="prim-section-header">Camera Shortcuts</div>
+      <div class="shortcut-tables">
+        <div class="shortcut-table">
+          <div class="shortcut-table-header">Viewport &amp; Navigation</div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Numpad 0</kbd></div>
+            <div class="shortcut-desc">Enter / exit camera view</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Numpad 0</kbd></div>
+            <div class="shortcut-desc">Snap camera to current viewport angle</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="az">G</kbd> <span class="key-hint">in camera view</span></div>
+            <div class="shortcut-desc">Move camera</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="ax">R</kbd> <span class="key-hint">in camera view</span></div>
+            <div class="shortcut-desc">Rotate camera</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>N</kbd> <span class="key-hint">in camera view</span></div>
+            <div class="shortcut-desc">Sidebar → View → Lock Camera to View</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Camera Path Animation ── -->
+      <div class="prim-section-header">Camera Path Animation</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add a curve path</div>
+            <div class="step-desc-new">Add a Path or Bezier curve to the scene. This becomes the rail your camera travels along. Reshape it in Edit Mode to define the camera's journey.</div>
+            <div class="step-keys-row"><kbd>Shift</kbd> <kbd>A</kbd> <span class="step-note">→ Curve → Path</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Parent the camera to the path</div>
+            <div class="step-desc-new">Select the camera first, then Shift+click the curve to add it to the selection. Parent with Follow Path — the camera will lock to the curve.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd>P</kbd> <span class="step-note">→ Follow Path</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Fix the camera orientation</div>
+            <div class="step-desc-new">On the camera's Follow Path constraint, set Forward to -Z and Up to Y. This ensures the camera points forward along the path rather than sideways or upside down.</div>
+            <div class="step-keys-row"><span class="step-note">Object Properties → Constraints → Follow Path</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add a Track To target</div>
+            <div class="step-desc-new">Add an Empty at your subject's position. Give the camera a Track To constraint targeting that Empty — now the camera looks at your subject no matter where it is on the path.</div>
+            <div class="step-keys-row"><span class="step-note">Add Constraint → Track To → set To: -Z, Up: Y</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Animate the offset</div>
+            <div class="step-desc-new">Keyframe the Offset value on the Follow Path constraint at frame 1 (value 0) and at your end frame (value 100). The camera smoothly travels the full length of the path.</div>
+            <div class="step-keys-row"><kbd>I</kbd> <span class="step-note">over the Offset field to keyframe</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Compositor Basics ── -->
+      <div class="prim-section-header">Compositor Basics</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Open the Compositor</div>
+            <div class="step-desc-new">Switch to the Compositing workspace at the top of the screen. Check the "Use Nodes" box. You'll see the default setup: Render Layers → Composite. Everything you add goes between these two nodes.</div>
+            <div class="step-keys-row"><span class="step-note">Compositing workspace → Use Nodes</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Preview as you work</div>
+            <div class="step-desc-new">Ctrl+Shift+click any node to route it through the Viewer node and see its output live. Add a Viewer node manually if you want to monitor multiple points in your chain at once.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Left Click</kbd> <span class="step-note">on any node</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Color grade with RGB Curves</div>
+            <div class="step-desc-new">Add an RGB Curves node between Render Layers and Composite. Lift the shadows, pull the highlights, or push a color tint. This is the fastest way to give a render a distinct look.</div>
+            <div class="step-keys-row"><kbd>Shift</kbd> <kbd>A</kbd> <span class="step-note">→ Color → RGB Curves</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add Glare for bloom and streaks</div>
+            <div class="step-desc-new">A Glare node adds glow around bright areas — essential for light sources, neon, fire, or anything that should feel like it's actually emitting light. Use the Bloom type for a soft halo, Streaks for a cinematic lens flare.</div>
+            <div class="step-keys-row"><kbd>Shift</kbd> <kbd>A</kbd> <span class="step-note">→ Filter → Glare</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Less is more</div>
+            <div class="step-desc-new">Compositing can quickly become a rabbit hole. Pick one or two effects that serve the story of the scene. A subtle color grade and a hint of glare will do more than stacking fifteen filters.</div>
+            <div class="step-keys-row"><span class="step-note">Keep the node tree readable — label your nodes with Ctrl+F2</span></div>
+          </div>
+        </div>
+      </div>
     </article>
 
     <article class="session-detail sound">
