@@ -46,6 +46,127 @@
       <p class="session-detail-desc">
         Mixamo is a free tool from Adobe that auto-rigs 3D characters and applies motion capture animation in minutes. Upload a character mesh, choose from hundreds of pre-built animations — walk cycles, dances, combat moves — and bring it back into Blender ready to render. Full character animation without building a rig from scratch.
       </p>
+
+      <div class="session-links">
+        <a class="session-link" href="https://www.mixamo.com/#/" target="_blank" rel="noopener noreferrer">
+          <span class="session-link-name">Mixamo</span>
+          <span class="session-link-url">mixamo.com</span>
+          <span class="session-link-desc">Free character auto-rigging and motion capture library from Adobe. Sign in with a free Adobe account.</span>
+        </a>
+      </div>
+
+      <!-- ── Export from Blender ── -->
+      <div class="prim-section-header">Step 1 — Export from Blender</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Pose your character in a T-pose</div>
+            <div class="step-desc-new">Mixamo's auto-rigger works best from a T-pose — arms out to the sides, body straight, feet together. If your character is already posed differently, straighten it out before exporting.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Select the mesh only</div>
+            <div class="step-desc-new">Click to select only your character mesh. Leave out cameras, lights, and any existing armature. Mixamo will create its own rig — you don't need to send one.</div>
+            <div class="step-keys-row"><kbd>Left Click</kbd> <span class="step-note">to select mesh</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Export as FBX</div>
+            <div class="step-desc-new">Go to File → Export → FBX. In the export options, check Selected Objects Only. Set Forward to -Z Forward and Up to Y Up. These match Blender's coordinate system to what Mixamo expects.</div>
+            <div class="step-keys-row"><span class="step-note">File → Export → FBX (.fbx)</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Apply transforms before exporting</div>
+            <div class="step-desc-new">In the FBX export panel, enable Apply Transform. This bakes your object's position and scale into the mesh so it arrives in Mixamo at the right size and orientation.</div>
+            <div class="step-keys-row"><span class="step-note">FBX Export → Apply Transform ✓</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Auto-Rig on Mixamo ── -->
+      <div class="prim-section-header">Step 2 — Auto-Rig on Mixamo</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Upload your character</div>
+            <div class="step-desc-new">On mixamo.com, click Upload Character and select your FBX file. Mixamo will process it and show you a preview — if the mesh looks wrong, check your export settings.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Place the rig markers</div>
+            <div class="step-desc-new">Mixamo shows five dots to place: chin, both wrists, and both elbows. Drag each dot to the correct joint on your character. The more accurate the placement, the better the auto-rig.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Let Mixamo rig it</div>
+            <div class="step-desc-new">Click Next — Mixamo generates a full skeleton and binds it to your mesh. Check Use Symmetry if your character is symmetrical. Review the result and re-place markers if any joint looks off.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Pick an animation</div>
+            <div class="step-desc-new">Browse the animation library on the left. Click any motion capture clip to instantly preview it on your character. Use the In Point and Out Point sliders to trim to just the section you need.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Download</div>
+            <div class="step-desc-new">Click Download. Set Format to FBX, Skin to With Skin (includes the mesh), Frames per Second to 30, and Keyframe Reduction to None. These settings give you the cleanest result to bring back into Blender.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Import into Blender ── -->
+      <div class="prim-section-header">Step 3 — Import into Blender</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Import the FBX</div>
+            <div class="step-desc-new">In Blender, go to File → Import → FBX and select your downloaded file. Your character arrives with its Mixamo armature and the animation already baked onto it.</div>
+            <div class="step-keys-row"><span class="step-note">File → Import → FBX (.fbx)</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Fix the scale</div>
+            <div class="step-desc-new">Mixamo exports at 100× Blender's default scale, so your character may appear enormous. Select it and scale down to 0.01, then apply the scale so it behaves correctly going forward.</div>
+            <div class="step-keys-row"><kbd>S</kbd> <span class="step-note">→ type 0.01 → Enter, then</span> <kbd>Ctrl</kbd> <kbd>A</kbd> <span class="step-note">→ Scale</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Preview the animation</div>
+            <div class="step-desc-new">Press Space to play. Your character should animate immediately. If it doesn't, check that the timeline range covers the animation — Mixamo clips are usually 30–250 frames depending on the motion.</div>
+            <div class="step-keys-row"><kbd>Space</kbd> <span class="step-note">Play / Pause</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Blend multiple animations with the NLA Editor</div>
+            <div class="step-desc-new">Import additional Mixamo clips as separate FBX files. In the NLA Editor, stack their actions as NLA tracks to sequence or blend animations — idle into walk into run, for example.</div>
+            <div class="step-keys-row"><span class="step-note">Editor Type → Nonlinear Animation</span></div>
+          </div>
+        </div>
+      </div>
     </article>
 
     <article class="session-detail sound">
