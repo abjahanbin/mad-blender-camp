@@ -34,7 +34,7 @@
         <span class="session drawing">Drawing / 2D</span>
       </div>
       <p class="session-detail-desc">
-        Daily warm-up focused on visual effects in 2D. Draw a moment of impact, explosion, or motion — use speed lines, debris trails, impact flashes, and shockwave rings to communicate force without showing it directly. Every VFX element has a 2D equivalent: a spark trail is a line with a gradient, a shockwave is a circle with a blur. Train your eye before the computer does it.
+        Daily warm-up focused on visual storytelling and timing. Draw a 6-panel storyboard showing the same scene cut from different angles or moments — a wide establishing shot, a close detail, a reaction. What does each cut change? What stays the same? Understanding visual rhythm on paper is the same skill as assembling clips in the sequence editor.
       </p>
     </article>
 
@@ -95,52 +95,89 @@
 
     <article class="session-detail animation">
       <div class="session-detail-top">
-        <h2 class="session-detail-title">Visual Effects &amp; Particles</h2>
+        <h2 class="session-detail-title">Video Editing &amp; Compositing</h2>
         <span class="session animation">Animation</span>
       </div>
       <p class="session-detail-desc">
-        Particle systems let Blender simulate and animate thousands of objects at once — embers drifting from a fire, sparks ricocheting off an impact, leaves scattered by wind, confetti falling through a scene. Set up an emitter object, configure the physics (gravity, air resistance, initial velocity), and control the look of each particle. Combine the rendered result in the compositor to add glow and motion blur that sell the effect as part of the scene.
+        Blender's Video Sequence Editor (VSE) is a full non-linear video editor built right into the same application as your 3D work. Import multiple video clips onto separate tracks, cut and trim footage, and layer your 3D renders directly on top of real video. Add transitions, color grades, and text overlays to pull everything into a cohesive final piece — no external editor required. This is how your 3D animations and composited renders become part of a complete, watchable video.
       </p>
 
-      <!-- ── Particle System Setup ── -->
-      <div class="prim-section-header">Setting Up a Particle System</div>
+      <!-- ── VSE Shortcuts ── -->
+      <div class="prim-section-header">Video Sequence Editor Shortcuts</div>
+      <div class="shortcut-tables">
+        <div class="shortcut-table">
+          <div class="shortcut-table-header">Editing Controls</div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd>A</kbd></div>
+            <div class="shortcut-desc">Add a clip — Movie, Image, Scene, Sound, or Color strip</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="az">K</kbd></div>
+            <div class="shortcut-desc">Cut (soft cut) at the playhead — splits a strip in two</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd class="az">K</kbd></div>
+            <div class="shortcut-desc">Hard cut — splits and removes the handles</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="az">G</kbd></div>
+            <div class="shortcut-desc">Grab / move a selected strip on the timeline</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Space</kbd></div>
+            <div class="shortcut-desc">Play / pause preview</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Multi-Clip Workflow ── -->
+      <div class="prim-section-header">Multi-Clip Video Workflow</div>
       <div class="build-steps-list">
         <div class="build-step-row">
           <div class="step-numeral az">01</div>
           <div class="step-content-col">
-            <div class="step-title-new">Add a particle system</div>
-            <div class="step-desc-new">Select the object that will emit particles. In the Particle Properties panel (the dotted-triangle icon), click the + button to add a new particle system. The default type is Emitter — the object will emit particles from its surface.</div>
-            <div class="step-keys-row"><span class="step-note">Particle Properties → + → Emitter</span></div>
+            <div class="step-title-new">Open the Video Editing workspace</div>
+            <div class="step-desc-new">Click the Video Editing tab at the top of the screen. The layout splits into a preview on top and the sequence timeline below. Set your output resolution and frame rate in Output Properties before importing anything — everything will conform to these settings.</div>
+            <div class="step-keys-row"><span class="step-note">Workspace tabs → Video Editing</span></div>
           </div>
         </div>
         <div class="build-step-row">
           <div class="step-numeral az">02</div>
           <div class="step-content-col">
-            <div class="step-title-new">Set count, start, and lifetime</div>
-            <div class="step-desc-new">Under Emission, set the total Number of particles, the Start frame (when they first appear), the End frame (when emission stops), and Lifetime (how many frames each particle lives before disappearing). Start with low counts — 200 to 1000 — until the sim looks right.</div>
+            <div class="step-title-new">Import your video clips</div>
+            <div class="step-desc-new">In the sequencer, press Shift+A and choose Movie to browse for a video file. Each clip lands as a strip on channel 1. Import additional clips the same way — Blender stacks them on higher channels automatically, or you can drag them manually to any channel.</div>
+            <div class="step-keys-row"><kbd>Shift</kbd> <kbd>A</kbd> <span class="step-note">→ Movie</span></div>
           </div>
         </div>
         <div class="build-step-row">
           <div class="step-numeral az">03</div>
           <div class="step-content-col">
-            <div class="step-title-new">Tune velocity and gravity</div>
-            <div class="step-desc-new">Under Velocity, set the Normal value to shoot particles outward from the surface. Under Field Weights, reduce Gravity to get a floatier, slower-falling effect — or crank it for a hard drop. Add randomness to Normal and Tangent for natural variation.</div>
+            <div class="step-title-new">Layer clips on separate channels</div>
+            <div class="step-desc-new">Channels stack from bottom to top — higher channel numbers appear on top in the final output. Put your background footage on channel 1, overlay clips on channel 2, and titles or effects on channel 3 and above. Clips on higher channels always render over lower ones.</div>
           </div>
         </div>
         <div class="build-step-row">
           <div class="step-numeral az">04</div>
           <div class="step-content-col">
-            <div class="step-title-new">Render as objects or halos</div>
-            <div class="step-desc-new">Under Render, choose Object to use any mesh as the particle shape (great for leaves, debris, or coins), or Halo for simple lit spheres (sparks, dust, stars). For Object rendering, pick an instance collection containing your particle object.</div>
-            <div class="step-keys-row"><span class="step-note">Particle Properties → Render → Render As</span></div>
+            <div class="step-title-new">Cut, trim, and arrange</div>
+            <div class="step-desc-new">Move the playhead to where you want a cut and press K to split a strip. Drag the left or right edge of any strip to trim it. Grab strips with G to slide them along the timeline. Delete unwanted sections with X. Build your edit by arranging the trimmed pieces in sequence.</div>
+            <div class="step-keys-row"><kbd>K</kbd> <span class="step-note">cut &nbsp;·&nbsp;</span> <kbd>G</kbd> <span class="step-note">move &nbsp;·&nbsp;</span> <kbd>X</kbd> <span class="step-note">delete</span></div>
           </div>
         </div>
         <div class="build-step-row">
           <div class="step-numeral az">05</div>
           <div class="step-content-col">
-            <div class="step-title-new">Add glow in the compositor</div>
-            <div class="step-desc-new">After rendering, use a Glare node in the compositor to add bloom around bright particles — essential for embers, sparks, or neon. Use a Blur node to add subtle motion blur to fast-moving particles when the rendered frames look too sharp.</div>
-            <div class="step-keys-row"><span class="step-note">Compositor → Shift+A → Filter → Glare / Blur</span></div>
+            <div class="step-title-new">Add a 3D render as a layer</div>
+            <div class="step-desc-new">Press Shift+A and choose Scene to add your current Blender scene as a strip. It renders live in the sequence — your 3D animation composited directly over video footage below it. Use the Blend drop-down on the strip to control how it combines with the layer underneath (Alpha Over to use transparency).</div>
+            <div class="step-keys-row"><kbd>Shift</kbd> <kbd>A</kbd> <span class="step-note">→ Scene &nbsp;·&nbsp; Strip Properties → Blend: Alpha Over</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">06</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Export to video</div>
+            <div class="step-desc-new">In Output Properties, set File Format to FFmpeg Video, Container to MPEG-4, and Video Codec to H.264. This gives you a standard .mp4 that plays everywhere. Set a destination folder and press Ctrl+F12 to render the full edit to a single video file.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd>F12</kbd> <span class="step-note">Render animation → outputs .mp4</span></div>
           </div>
         </div>
       </div>
