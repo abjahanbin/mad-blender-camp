@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Day 8 — Reactive &amp; Ambient · MAD Blender Camp 2026</title>
+  <title>Day 8 — Surface &amp; Light · MAD Blender Camp 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -21,7 +21,7 @@
 <header class="day-header">
   <span class="day-num" aria-hidden="true">08</span>
   <p class="hud-label">Week 2 · Wednesday, July 15, 2026</p>
-  <h1>Reactive &amp; Ambient</h1>
+  <h1>Surface &amp; Light</h1>
 </header>
 
 <main>
@@ -34,18 +34,151 @@
         <span class="session drawing">Drawing / 2D</span>
       </div>
       <p class="session-detail-desc">
-        Daily warm-up sketching. Today's focus: rhythm and beat on the page. Translate a piece of music into a sequence of marks — one frame per beat, one drawing per section. Experiment with how tempo becomes visual pacing.
+        Daily warm-up sketching. Today's focus: light and shadow on form. Draw an object or figure lit from a single direction — note where highlights sharpen, where shadows harden at the terminator, where they soften on reflected surfaces. Reading light in drawing is the same skill as placing lights in 3D.
       </p>
     </article>
 
-    <article class="session-detail animation">
+    <article class="session-detail modeling">
       <div class="session-detail-top">
-        <h2 class="session-detail-title">Audio Reactive Animation</h2>
-        <span class="session animation">Animation</span>
+        <h2 class="session-detail-title">Shaders &amp; Materials</h2>
+        <span class="session modeling">Modeling / 3D</span>
       </div>
       <p class="session-detail-desc">
-        Drive your 3D animation directly with audio data. Blender's driver system lets you link sound frequencies to object properties — a bass hit makes something jump, a high frequency controls rotation speed, amplitude controls scale. Your scene doesn't just play alongside the music — it listens and responds.
+        Shaders define how a surface interacts with light — the difference between polished metal and rough concrete, frosted glass and clear water. Blender's Shader Editor builds materials as node networks: inputs, operations, and outputs wired together to describe any surface you can imagine. The Principled BSDF puts the most important controls in one node — Base Color, Roughness (matte to glossy), Metallic, and Emission (self-glow). Connect an image texture for surface detail, use a Color Ramp to map values, or paint directly on the mesh with texture paint.
       </p>
+
+      <!-- ── Shader Editor Basics ── -->
+      <div class="prim-section-header">Shader Editor Basics</div>
+      <div class="shortcut-tables">
+        <div class="shortcut-table">
+          <div class="shortcut-table-header">Key Shortcuts</div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><span class="key-hint">Editor Type → Shader Editor</span></div>
+            <div class="shortcut-desc">Switch an editor panel to the Shader Editor</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd>A</kbd></div>
+            <div class="shortcut-desc">Add a new node at the cursor</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Left Click</kbd></div>
+            <div class="shortcut-desc">Preview any node's output in the viewport</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>F</kbd> <span class="key-hint">drag between sockets</span></div>
+            <div class="shortcut-desc">Connect two node sockets with a link</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Ctrl</kbd> <kbd>T</kbd></div>
+            <div class="shortcut-desc">Add texture coordinates + mapping nodes (Node Wrangler addon)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Principled BSDF ── -->
+      <div class="prim-section-header">Key Principled BSDF Inputs</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Base Color</div>
+            <div class="step-desc-new">The base tint of the surface before lighting is applied. Connect an Image Texture node here to apply a photo or painted texture, or just click the color swatch to pick a flat color.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Roughness</div>
+            <div class="step-desc-new">Controls how blurry or sharp reflections are. 0 = mirror-perfect. 1 = completely diffuse. Most real surfaces live between 0.2 (polished wood) and 0.8 (rough concrete). This single value has the biggest impact on the feel of a material.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Metallic</div>
+            <div class="step-desc-new">0 = non-metal (plastic, fabric, skin). 1 = metal (reflects its surroundings with a tinted color). In practice it's almost always exactly 0 or exactly 1 — metals and non-metals behave fundamentally differently under light.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Emission</div>
+            <div class="step-desc-new">Makes the surface emit its own light — useful for screens, neon, fire, or glowing effects. Connect a color and raise the strength. In Cycles, emission surfaces actually illuminate the objects around them.</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="session-detail modeling">
+      <div class="session-detail-top">
+        <h2 class="session-detail-title">Lighting in Blender</h2>
+        <span class="session modeling">Modeling / 3D</span>
+      </div>
+      <p class="session-detail-desc">
+        Lighting transforms a grey scene into something that feels real, atmospheric, and alive. We'll work through Blender's four light types — Point (a bare omnidirectional bulb), Sun (parallel rays, like daylight), Spot (a focused cone), and Area (a soft rectangular panel) — and explore HDRI environment maps for photographic background illumination. Then we'll set up the classic three-point lighting rig used in photography and film: a key light for definition, a fill light to soften harsh shadows, and a rim light to separate your subject from the background.
+      </p>
+
+      <!-- ── Light Types ── -->
+      <div class="prim-section-header">Light Types &amp; Settings</div>
+      <div class="shortcut-tables">
+        <div class="shortcut-table">
+          <div class="shortcut-table-header">Key Properties</div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd>Shift</kbd> <kbd>A</kbd> <span class="key-hint">→ Light</span></div>
+            <div class="shortcut-desc">Add a light to the scene</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><kbd class="az">G</kbd> <kbd class="ax">R</kbd></div>
+            <div class="shortcut-desc">Move / rotate a light after selecting it</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><span class="key-hint">Object Data → Power</span></div>
+            <div class="shortcut-desc">Brightness in Watts — start around 10–100 W</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><span class="key-hint">Object Data → Radius</span></div>
+            <div class="shortcut-desc">Larger radius = softer, more diffuse shadows</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys"><span class="key-hint">World → Surface → Color</span></div>
+            <div class="shortcut-desc">Set an HDRI environment map here for ambient light</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Three-Point Lighting ── -->
+      <div class="prim-section-header">Three-Point Lighting Setup</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Place the key light</div>
+            <div class="step-desc-new">Add an Area light and position it 45° to the side and slightly above your subject. This is your primary light — it defines the shape and casts the main shadows. Turn up the power until the lit side of your subject looks well-exposed.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add a fill light</div>
+            <div class="step-desc-new">Add a second, dimmer light on the opposite side of the key. The fill lightens the shadow side so it isn't completely black — set its power to roughly a quarter of the key light. Keep it soft and low to avoid creating a second competing shadow.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add a rim light</div>
+            <div class="step-desc-new">Position a third light behind and above the subject, aimed at the back of the head and shoulders. This creates a bright edge (a "rim") that separates the subject from the background and gives depth to the silhouette.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Adjust color temperature</div>
+            <div class="step-desc-new">Give each light a slightly different color to create contrast. Key light slightly warm (orange tint), fill light slightly cool (blue tint). The difference between warm and cool in the same scene reads as natural and photographic.</div>
+            <div class="step-keys-row"><span class="step-note">Object Data → Color — shift the hue slightly, keep it subtle</span></div>
+          </div>
+        </div>
+      </div>
     </article>
 
     <article class="session-detail sound">
@@ -62,7 +195,7 @@
 
   <div class="day-pagination" aria-label="Day navigation">
     <a href="day7.html">← Day 7: Character in Motion</a>
-    <a href="day9.html">Day 9: Force &amp; Flow →</a>
+    <a href="day9.html">Day 9: Composite &amp; Effects →</a>
   </div>
 </main>
 

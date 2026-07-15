@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Day 9 — Force &amp; Flow · MAD Blender Camp 2026</title>
+  <title>Day 9 — Composite &amp; Effects · MAD Blender Camp 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -21,7 +21,7 @@
 <header class="day-header">
   <span class="day-num" aria-hidden="true">09</span>
   <p class="hud-label">Week 2 · Thursday, July 16, 2026</p>
-  <h1>Force &amp; Flow</h1>
+  <h1>Composite &amp; Effects</h1>
 </header>
 
 <main>
@@ -30,22 +30,120 @@
 
     <article class="session-detail drawing">
       <div class="session-detail-top">
-        <h2 class="session-detail-title">Drawing Simulation</h2>
+        <h2 class="session-detail-title">Drawing Exercises</h2>
         <span class="session drawing">Drawing / 2D</span>
       </div>
       <p class="session-detail-desc">
-        Daily warm-up with a physics focus. Draw objects moving under real forces — the arc of a thrown ball, the cascade of falling cloth, the ripple of a collision, the bounce of something elastic. Let gravity and momentum guide the line. Simulate with your hand before the computer does it.
+        Daily warm-up focused on visual effects in 2D. Draw a moment of impact, explosion, or motion — use speed lines, debris trails, impact flashes, and shockwave rings to communicate force without showing it directly. Every VFX element has a 2D equivalent: a spark trail is a line with a gradient, a shockwave is a circle with a blur. Train your eye before the computer does it.
       </p>
     </article>
 
-    <article class="session-detail modeling">
+    <article class="session-detail animation">
       <div class="session-detail-top">
-        <h2 class="session-detail-title">Physics Simulation</h2>
-        <span class="session modeling">Modeling / 3D</span>
+        <h2 class="session-detail-title">Advanced Compositing</h2>
+        <span class="session animation">Animation</span>
       </div>
       <p class="session-detail-desc">
-        Blender's physics engine can simulate rigid bodies, cloth, soft bodies, fluid, smoke, and destruction. Set up a simulation, bake it, and render a sequence where the computer calculates every collision, fold, and splash. Real physical forces, virtual matter — animation that you couldn't keyframe by hand.
+        Day 6 introduced the compositor — today we go deeper. Render Passes split your scene into separate image layers (diffuse color, shadows, specular highlights, reflections, depth) that can be adjusted and recombined with full control after the render. Grade shadows and highlights independently. Composite characters against new backgrounds using alpha channels and the Alpha Over node. Use the Z-depth pass with a Defocus node to add cinematic depth of field entirely in post — no re-rendering needed.
       </p>
+
+      <!-- ── Render Passes ── -->
+      <div class="prim-section-header">Enabling Render Passes</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Enable passes in View Layer Properties</div>
+            <div class="step-desc-new">In View Layer Properties (the camera-with-layers icon), open the Passes section. Enable Diffuse Color, Shadow, and Z-Depth at minimum. Each enabled pass becomes a separate output socket on the Render Layers node in the compositor.</div>
+            <div class="step-keys-row"><span class="step-note">View Layer Properties → Passes → enable as needed</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Access passes in the compositor</div>
+            <div class="step-desc-new">Open the Compositor workspace and check Use Nodes. The Render Layers node now shows a socket for each enabled pass — drag a link from any pass socket to inspect it with a Viewer node, or pipe it into a separate processing chain.</div>
+            <div class="step-keys-row"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Left Click</kbd> <span class="step-note">on any node to preview</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Grade shadows independently</div>
+            <div class="step-desc-new">Route the Shadow pass through an RGB Curves node. Darken it, tint it, or soften its edges, then combine it back with the image using a Mix node in Multiply mode. You can adjust shadow darkness and color without touching the rest of the scene.</div>
+            <div class="step-keys-row"><span class="step-note">Shift+A → Color → RGB Curves &nbsp;·&nbsp; Shift+A → Color → Mix</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add depth of field with the Z pass</div>
+            <div class="step-desc-new">Route the Z (depth) pass into a Defocus node's Z socket, and the combined image into its Image socket. Set the Bokeh type and F-stop to control how strongly background elements blur. Tweak focus distance without re-rendering a single frame.</div>
+            <div class="step-keys-row"><span class="step-note">Shift+A → Filter → Defocus</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Composite elements with Alpha Over</div>
+            <div class="step-desc-new">To place a 3D render over a background image, connect your render to the upper Image socket of an Alpha Over node and the background to the lower. The alpha channel of your render acts as the mask. Stack multiple Alpha Over nodes to layer multiple elements.</div>
+            <div class="step-keys-row"><span class="step-note">Shift+A → Color → Alpha Over</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="session-detail animation">
+      <div class="session-detail-top">
+        <h2 class="session-detail-title">Visual Effects &amp; Particles</h2>
+        <span class="session animation">Animation</span>
+      </div>
+      <p class="session-detail-desc">
+        Particle systems let Blender simulate and animate thousands of objects at once — embers drifting from a fire, sparks ricocheting off an impact, leaves scattered by wind, confetti falling through a scene. Set up an emitter object, configure the physics (gravity, air resistance, initial velocity), and control the look of each particle. Combine the rendered result in the compositor to add glow and motion blur that sell the effect as part of the scene.
+      </p>
+
+      <!-- ── Particle System Setup ── -->
+      <div class="prim-section-header">Setting Up a Particle System</div>
+      <div class="build-steps-list">
+        <div class="build-step-row">
+          <div class="step-numeral az">01</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add a particle system</div>
+            <div class="step-desc-new">Select the object that will emit particles. In the Particle Properties panel (the dotted-triangle icon), click the + button to add a new particle system. The default type is Emitter — the object will emit particles from its surface.</div>
+            <div class="step-keys-row"><span class="step-note">Particle Properties → + → Emitter</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">02</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Set count, start, and lifetime</div>
+            <div class="step-desc-new">Under Emission, set the total Number of particles, the Start frame (when they first appear), the End frame (when emission stops), and Lifetime (how many frames each particle lives before disappearing). Start with low counts — 200 to 1000 — until the sim looks right.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">03</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Tune velocity and gravity</div>
+            <div class="step-desc-new">Under Velocity, set the Normal value to shoot particles outward from the surface. Under Field Weights, reduce Gravity to get a floatier, slower-falling effect — or crank it for a hard drop. Add randomness to Normal and Tangent for natural variation.</div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">04</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Render as objects or halos</div>
+            <div class="step-desc-new">Under Render, choose Object to use any mesh as the particle shape (great for leaves, debris, or coins), or Halo for simple lit spheres (sparks, dust, stars). For Object rendering, pick an instance collection containing your particle object.</div>
+            <div class="step-keys-row"><span class="step-note">Particle Properties → Render → Render As</span></div>
+          </div>
+        </div>
+        <div class="build-step-row">
+          <div class="step-numeral az">05</div>
+          <div class="step-content-col">
+            <div class="step-title-new">Add glow in the compositor</div>
+            <div class="step-desc-new">After rendering, use a Glare node in the compositor to add bloom around bright particles — essential for embers, sparks, or neon. Use a Blur node to add subtle motion blur to fast-moving particles when the rendered frames look too sharp.</div>
+            <div class="step-keys-row"><span class="step-note">Compositor → Shift+A → Filter → Glare / Blur</span></div>
+          </div>
+        </div>
+      </div>
     </article>
 
     <article class="session-detail sound">
@@ -61,7 +159,7 @@
   </div>
 
   <div class="day-pagination" aria-label="Day navigation">
-    <a href="day8.html">← Day 8: Reactive &amp; Ambient</a>
+    <a href="day8.html">← Day 8: Surface &amp; Light</a>
     <a href="day10.html">Day 10: Final Mix →</a>
   </div>
 </main>
